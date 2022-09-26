@@ -1,0 +1,74 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+{% if category %}
+{{ category.description|truncatewords:150 }}
+{% else %}
+
+{% endif %}
+{% endblock %}
+
+{% block title %}
+{% if category %}
+{{ category.name }}- Auto Sparx
+{%  else %}
+
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+{% if category %}
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div>
+           <h1 class="text-center my_head">{{category.name}}</h1>
+        </div>
+    </div>
+    {% else %}
+    <div>
+        <div class="text-center" style="margin-top:10px;">
+            <img src="{% static 'banner.jpeg' %}" alt="banner image" style="width:100%;height:400px;">
+
+        </div>
+
+    </div>
+</div>
+{% endif %}
+
+</div>
+
+<div class="container">
+    <div class="row" style="margin-top:2rem;">
+
+        {% for car in cars_list %}
+
+        <div class="col-12 col-sm-12 col-md-3 col-lg-4 p-3" >
+ <a href="{{car.get_detail}}" style="text-decoration:none;">
+            <div class="card text-center p-2" style="width: 23rem;">
+  <img class="card-img-top " src="{{car.image.url}}" alt="{{car.name}}" style="width:100%;height:70%;">
+  <div class="card-body text-center">
+    <h5 class="card-title text-center " style="color:black;font-size:1.5rem;">{{car.name}}</h5>
+    <a  class="btn text-white bg-dark text-center">{{car.price}}</a>
+  </div>
+</div></a>
+        </div>
+{% endfor %}
+    </div>
+
+</div>
+
+    <div style="margin-top:30px;">
+        {% if cars_list.paginator.num_pages > 1 %}
+        <div class="text-center">
+            {% for pg in cars_list.paginator.page_range %}
+            <a href="?page={{pg}}" class="btn btn-sm btn-light {% if cars_list.number == pg %} active {% endif %}">{{pg}}</a>
+            {%  endfor %}
+        </div>
+        {% endif %}
+        <br>
+    </div>
+
+{% endblock %}

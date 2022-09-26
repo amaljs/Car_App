@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+This is the individual car page
+
+
+
+
+
+{% endblock %}
+
+{% block title %}
+
+{{car.title}}
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+            <div class="card text-center" style="width: 100%;padding:3rem;margin-top:10px;">
+  <img class="card-img-top text-center" src="{{car.image.url}}" alt="{{car.name}}" style="width:80%;height:360px;margin-left:6rem;">
+  <div class="card-body">
+
+    <h2 class="card-title" style="margin-top:2rem;">{{car.name}}</h2>
+      <h3 class="card-title text-info" style="margin-top:2rem;">{{car.category}}</h3>
+        <h3 class="card-title text-white" style="margin-top:2rem;background:orange;">{{car.price}}</h3>
+    <p class="card-text" style="margin-top:2rem;">{{car.desc}}</p>
+      <div style="display:flex;margin-top:2rem;" class="text-center">
+          <a href="{{car.link}}" class="btn btn-success" style="margin-right:2rem;margin-left:40%;width:8rem;">Offical Site</a>
+        <a href="{% url 'car_app:home' %}" class="btn btn-secondary" style="width:8rem;">Home</a>
+      </div>
+
+      <div style="display:flex;margin-top:2rem;" class="text-center">
+          <a href="{{car.get_update}}" class="btn btn-primary" style="margin-right:2rem;margin-left:40%;width:8rem;">Update</a>
+        <a href="{{car.get_delete}}" class="btn btn-danger" style="width:8rem;">Delete</a>
+      </div>
+
+  </div>
+</div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

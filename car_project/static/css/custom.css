@@ -1,0 +1,15 @@
+body{
+font-family: 'Ubuntu', sans-serif;
+}
+
+.white{
+color:#dbdbdb;
+}
+a.nav-link:hover{
+color:white;
+}
+
+a.navbar-brand:hover{
+color:white;
+}
+
